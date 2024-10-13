@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 
+/* @typescript-eslint/no-explicit-any
+  no-var
+*/
 declare global {
   var mongoose: any;
 }
