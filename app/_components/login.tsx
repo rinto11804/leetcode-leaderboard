@@ -4,7 +4,9 @@ import { login } from "../actions/auth";
 import { useFormState, useFormStatus } from "react-dom";
 
 export default function Login() {
+  //@typescript-eslint/no-unused-vars
   const [state, action] = useFormState(login, undefined);
+  console.log(state);
   const { pending } = useFormStatus();
 
   return (

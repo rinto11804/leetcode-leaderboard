@@ -1,13 +1,12 @@
 import getAllUsers from "@/lib/dashboard";
 import Leaderboard from "../_components/leaderboard";
 import TaskForm from "../_components/task-form";
-import { Role } from "@/lib/types";
 
 export default async function DashboardPage() {
   let users;
   try {
     users = await getAllUsers();
-  } catch (e: any) {
+  } catch (e) {
     return <p className="flex flex-col items-center">{e.message}</p>;
   }
   return (

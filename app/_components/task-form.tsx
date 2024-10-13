@@ -2,10 +2,9 @@
 
 import { useUserContext } from "@/hooks/user";
 
-interface TaskFormProps {}
-
-export default function TaskForm({}: TaskFormProps) {
+export default function TaskForm() {
   const user = useUserContext();
+  console.log(user);
   return (
     <div className="card bg-base-200">
       <div className="card-body flex gap-10 w-full">

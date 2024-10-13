@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "../_components/navbar";
 import { cookies } from "next/headers";
 import { decrypt } from "@/lib/session";
-import { UserProvider, useUserContext } from "@/hooks/user";
+import { UserProvider } from "@/hooks/user";
 import { ProtectedUser } from "@/lib/types";
 
 export const metadata: Metadata = {

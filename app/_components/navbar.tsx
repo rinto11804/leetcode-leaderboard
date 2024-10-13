@@ -6,6 +6,7 @@ import { useUserContext } from "@/hooks/user";
 
 function Navbar() {
   const [state, action] = useFormState(logout, undefined);
+  console.log(state);
   const user = useUserContext();
   return (
     <nav className="navbar bg-base-300">

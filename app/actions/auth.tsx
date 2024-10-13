@@ -8,10 +8,8 @@ import {
   LoginFormSchema,
   FormState,
 } from "@/lib/types";
-import { SolvedCount } from "@/lib/utils";
 import { createUser, getUserbyEmail, verifyUser } from "@/models/user.model";
 import bcrpyt from "bcrypt";
-import { createInitialRouterState } from "next/dist/client/components/router-reducer/create-initial-router-state";
 import { redirect } from "next/navigation";
 
 const LEETCODE_API = process.env.LEETCODE_API;
@@ -39,8 +37,8 @@ export async function signup(state: FormState, formData: FormData) {
     };
   }
 
-  let solvedQuestions = await fetch(`${LEETCODE_API}/${res.username}/solved`);
-  let { easySolved, hardSolved, mediumSolved } = await solvedQuestions.json();
+  const solvedQuestions = await fetch(`${LEETCODE_API}/${res.username}/solved`);
+  const { easySolved, hardSolved, mediumSolved } = await solvedQuestions.json();
   await verifyUser(data.email, {
     easy: easySolved,
     medium: mediumSolved,

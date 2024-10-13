@@ -1,4 +1,4 @@
-import { getUserbyEmail, getUsers } from "@/models/user.model";
+import { getUsers } from "@/models/user.model";
 
 export default async function getAllUsers() {
   try {

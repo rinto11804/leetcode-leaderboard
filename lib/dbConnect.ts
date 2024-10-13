@@ -1,5 +1,4 @@
-import mongoose, { Mongoose } from "mongoose";
-import google from "next-auth/providers/google";
+import mongoose from "mongoose";
 
 declare global {
   var mongoose: any;
