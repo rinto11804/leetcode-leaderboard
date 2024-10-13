@@ -8,9 +8,13 @@ import {
   LoginFormSchema,
   FormState,
 } from "@/lib/types";
-import { createUser, getUserbyEmail } from "@/models/user.model";
+import { SolvedCount } from "@/lib/utils";
+import { createUser, getUserbyEmail, verifyUser } from "@/models/user.model";
 import bcrpyt from "bcrypt";
+import { createInitialRouterState } from "next/dist/client/components/router-reducer/create-initial-router-state";
 import { redirect } from "next/navigation";
+
+const LEETCODE_API = process.env.LEETCODE_API;
 
 export async function signup(state: FormState, formData: FormData) {
   await dbConnect();
@@ -28,12 +32,20 @@ export async function signup(state: FormState, formData: FormData) {
     };
   }
   const data = validatedFields.data as User;
-  const user = await createUser(data);
-  if (!user) {
+  const res = await createUser(data);
+  if (res.error) {
     return {
       message: "An error occurred while creating your account.",
     };
   }
+
+  let solvedQuestions = await fetch(`${LEETCODE_API}/${res.username}/solved`);
+  let { easySolved, hardSolved, mediumSolved } = await solvedQuestions.json();
+  await verifyUser(data.email, {
+    easy: easySolved,
+    medium: mediumSolved,
+    hard: hardSolved,
+  });
 }
 
 export async function login(state: FormState, formData: FormData) {
